@@ -2,24 +2,54 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Game {
+  id: ID!
+  type: String!
+  description: String!
+  range: Float!
+  price: Float!
+  max_number: Float!
+  color: String!
+  bet: Bet!
+}
+
+type Bet {
+  id: ID!
+  game: [Game!]!
+  user: [User!]!
+  numbers_choosed: String!
+}
+
 type User {
   id: ID!
   username: String!
   email: String!
   password: String!
+  bet: [Bet!]!
 }
 
 type Query {
   users: [User!]!
   user(id: Float!): User!
+  allGames: [Game!]!
 }
 
 type Mutation {
   createUser(data: CreateUserInput!): User!
+  createGame(data: CreateGameInput!): Game!
 }
 
 input CreateUserInput {
   username: String!
   email: String!
   password: String!
+}
+
+input CreateGameInput {
+  type: String!
+  description: String!
+  range: Float!
+  price: Float!
+  max_number: Float!
+  color: String!
 }
