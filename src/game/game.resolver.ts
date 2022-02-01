@@ -1,6 +1,4 @@
-// import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
-// import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 import { CreateGameInput } from './dto/create-game.input';
 import { Game } from './game.entity';
 import { GameService } from './game.service';
@@ -19,7 +17,6 @@ export class GameResolver {
   }
 
   @Mutation(() => Game)
-  // @UseGuards(JwtAuthGuard)
   async createGame(
     @Args('data') data: CreateGameInput
   ): Promise<Game> {

@@ -29,6 +29,6 @@ export class Game{
   color: string
 
   @OneToMany(() => Bet, bet => bet.game)
-  public bet: Bet
+  public bet: Bet[]
 
 }

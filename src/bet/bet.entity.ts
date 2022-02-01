@@ -11,11 +11,11 @@ export class Bet{
   @Field(() => ID)
   id: number
 
-  @ManyToOne(() => Game, game => game.bet)
-  public game!: Game[]
+  @ManyToOne(() => Game, game => game.id)
+  game: number
   
-  @ManyToOne(() => User, user => user.bet)
-  public user!: User[]
+  @ManyToOne(() => User, user => user.id)
+  user: number
 
   @Column()
   numbers_choosed: string

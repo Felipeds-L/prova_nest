@@ -10,14 +10,26 @@ type Game {
   price: Float!
   max_number: Float!
   color: String!
-  bet: Bet!
+  bet: [Bet!]!
 }
 
 type Bet {
   id: ID!
-  game: [Game!]!
-  user: [User!]!
+  game: Float!
+  user: Float!
   numbers_choosed: String!
+}
+
+type LevelAccess {
+  id: ID!
+  level: String!
+  user_level: [UserLevelAccess!]!
+}
+
+type UserLevelAccess {
+  id: ID!
+  user: Float!
+  level_access: Float!
 }
 
 type User {
@@ -26,6 +38,7 @@ type User {
   email: String!
   password: String!
   bet: [Bet!]!
+  user_level: [UserLevelAccess!]!
 }
 
 type Query {
@@ -33,11 +46,15 @@ type Query {
   user(id: Float!): User!
   allGames: [Game!]!
   bets: [Bet!]!
+  levels(id: Float!): LevelAccess!
 }
 
 type Mutation {
   createUser(data: CreateUserInput!): User!
   createGame(data: CreateGameInput!): Game!
+  createBet(data: CreateBetInput!): Bet!
+  createLevelAcces(data: CreateLevelAccessInput!): LevelAccess!
+  createUserLevel(data: CreateUserLevelAccessInput!): UserLevelAccess!
 }
 
 input CreateUserInput {
@@ -53,4 +70,19 @@ input CreateGameInput {
   price: Float!
   max_number: Float!
   color: String!
+}
+
+input CreateBetInput {
+  game: Float!
+  user: Float!
+  numbers_choosed: String!
+}
+
+input CreateLevelAccessInput {
+  level: String!
+}
+
+input CreateUserLevelAccessInput {
+  user: Float!
+  level_access: Float!
 }

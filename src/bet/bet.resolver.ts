@@ -1,7 +1,7 @@
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { Bet } from './bet.entity';
 import { BetService } from './bet.service';
-import { CreateBetInput } from './tdo/create-bet.input';
+import { CreateBetInput } from './dto/create-bet.input';
 
 @Resolver('Bet')
 export class BetResolver {
@@ -16,10 +16,12 @@ export class BetResolver {
     return bets
   }
 
-  // @Mutation(() => Bet)
-  // async create(
-  //   @Args('data') data: CreateBetInput
-  // ): Promise<Bet>{
-  //   const bet = await this
-  // }
+  @Mutation(() => Bet)
+  async createBet(
+    @Args('data') data: CreateBetInput
+  ): Promise<Bet>{
+    const bet = await this.betService.createBet(data)
+
+    return bet
+  }
 }

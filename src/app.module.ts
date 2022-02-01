@@ -11,6 +11,7 @@ import { BetModule } from './bet/bet.module';
 import { LevelAccessService } from './level-access/level-access.service';
 import { LevelAccessResolver } from './level-access/level-access.resolver';
 import { LevelAccessModule } from './level-access/level-access.module';
+import { UserLevelAccessModule } from './user-level-access/user-level-access.module';
 
 
 @Module({
@@ -24,8 +25,9 @@ import { LevelAccessModule } from './level-access/level-access.module';
     GameModule,
     BetModule,
     LevelAccessModule,
+    UserLevelAccessModule,
   ],
   controllers: [AppController],
-  providers: [AppService, LevelAccessService, LevelAccessResolver],
+  providers: [AppService],
 })
 export class AppModule {}

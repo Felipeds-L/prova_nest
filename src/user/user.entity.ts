@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
 import { Bet } from "src/bet/bet.entity";
+import { UserLevelAccess } from "src/user-level-access/user-level-access.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
@@ -21,4 +22,7 @@ export class User{
 
   @OneToMany(() => Bet, bet => bet.user)
   public bet: Bet[]
+
+  @OneToMany(() => UserLevelAccess, userLevel => userLevel.id)
+  public user_level: UserLevelAccess[]
 }
