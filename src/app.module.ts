@@ -8,6 +8,9 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { GameModule } from './game/game.module';
 import { BetModule } from './bet/bet.module';
+import { LevelAccessService } from './level-access/level-access.service';
+import { LevelAccessResolver } from './level-access/level-access.resolver';
+import { LevelAccessModule } from './level-access/level-access.module';
 
 
 @Module({
@@ -20,8 +23,9 @@ import { BetModule } from './bet/bet.module';
     AuthModule,
     GameModule,
     BetModule,
+    LevelAccessModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, LevelAccessService, LevelAccessResolver],
 })
 export class AppModule {}

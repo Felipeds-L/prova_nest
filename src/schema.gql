@@ -32,6 +32,7 @@ type Query {
   users: [User!]!
   user(id: Float!): User!
   allGames: [Game!]!
+  bets: [Bet!]!
 }
 
 type Mutation {

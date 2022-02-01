@@ -8,6 +8,7 @@ import { BetService } from './bet.service';
   providers: [BetResolver, BetService],
   imports: [
     TypeOrmModule.forFeature([Bet])
-  ]
+  ],
+  exports: [BetService]
 })
 export class BetModule {}
