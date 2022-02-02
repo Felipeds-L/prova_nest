@@ -15,7 +15,7 @@ export class LevelAccessService {
     const level = await this.levelAccessRepository.findOne(id)
 
     if(!level){
-      throw new NotFoundException('User do not found!')
+      throw new NotFoundException('Level do not found!')
     }
 
     return level;

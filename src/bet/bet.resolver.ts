@@ -1,8 +1,4 @@
-import { Res } from '@nestjs/common';
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
-import { Response } from 'express';
-import { GameService } from 'src/game/game.service';
-import { UserService } from 'src/user/user.service';
 import { Bet } from './bet.entity';
 import { BetService } from './bet.service';
 import { CreateBetInput } from './dto/create-bet.input';
