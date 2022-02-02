@@ -26,8 +26,8 @@ export class UserService {
     return user;
   }
 
-  async findOne(username: string): Promise<User>{
-    const user = await this.userRepository.findOne({where: {username: username}})
+  async findOne(email: string): Promise<User>{
+    const user = await this.userRepository.findOne({where: {email: email}})
     if(!user){
       throw new NotFoundException('User do not found!')
     }
@@ -38,6 +38,7 @@ export class UserService {
   async createUser(data: CreateUserInput): Promise<User>{
     const user = await this.userRepository.create(data)
     const userSaved = await this.userRepository.save(user)
+    
     if(!userSaved){
       throw new InternalServerErrorException("Error on create the user!")
     }

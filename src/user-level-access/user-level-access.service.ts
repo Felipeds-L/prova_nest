@@ -15,6 +15,18 @@ export class UserLevelAccessService {
     private levelService: LevelAccessService
   ){}
 
+  async findUserLevel(user: number){
+    const user_level = await this.userLevelAccessRepository.find({where: { user: user }})
+    let isAdmin = false
+    user_level.forEach((user) => {
+      if(user.level_access === 1){
+        isAdmin = true
+      }
+    })
+
+    return isAdmin
+  }
+
   async createUserLevel(data: CreateUserLevelAccessInput): Promise<UserLevelAccess>{
     const level = await this.levelService.levelById(data.level_access)
     const user = await this.userService.userById(data.user)

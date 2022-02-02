@@ -12,6 +12,9 @@ import { LevelAccessService } from './level-access/level-access.service';
 import { LevelAccessResolver } from './level-access/level-access.resolver';
 import { LevelAccessModule } from './level-access/level-access.module';
 import { UserLevelAccessModule } from './user-level-access/user-level-access.module';
+import { CartService } from './cart/cart.service';
+import { CartResolver } from './cart/cart.resolver';
+import { CartModule } from './cart/cart.module';
 
 
 @Module({
@@ -26,6 +29,7 @@ import { UserLevelAccessModule } from './user-level-access/user-level-access.mod
     BetModule,
     LevelAccessModule,
     UserLevelAccessModule,
+    CartModule,
   ],
   controllers: [AppController],
   providers: [AppService],

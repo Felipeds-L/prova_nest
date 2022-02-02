@@ -41,27 +41,42 @@ type User {
   user_level: [UserLevelAccess!]!
 }
 
+type Cart {
+  id: ID!
+  min_cart_value: Float!
+}
+
 type Query {
   users: [User!]!
   user(id: Float!): User!
+  levels(id: Float!): LevelAccess!
   allGames: [Game!]!
   findById: Game!
   bets: [Bet!]!
-  levels(id: Float!): LevelAccess!
 }
 
 type Mutation {
   createUser(data: CreateUserInput!): User!
+  createUserLevel(data: CreateUserLevelAccessInput!): UserLevelAccess!
+  createLevelAcces(data: CreateLevelAccessInput!): LevelAccess!
   createGame(data: CreateGameInput!): Game!
   createBet(data: CreateBetInput!): Bet!
-  createLevelAcces(data: CreateLevelAccessInput!): LevelAccess!
-  createUserLevel(data: CreateUserLevelAccessInput!): UserLevelAccess!
+  createCart(data: CreateCartInput!): Cart!
 }
 
 input CreateUserInput {
   username: String!
   email: String!
   password: String!
+}
+
+input CreateUserLevelAccessInput {
+  user: Float!
+  level_access: Float!
+}
+
+input CreateLevelAccessInput {
+  level: String!
 }
 
 input CreateGameInput {
@@ -79,11 +94,6 @@ input CreateBetInput {
   numbers_choosed: String!
 }
 
-input CreateLevelAccessInput {
-  level: String!
-}
-
-input CreateUserLevelAccessInput {
-  user: Float!
-  level_access: Float!
+input CreateCartInput {
+  min_cart_value: Float!
 }
