@@ -45,6 +45,7 @@ type Query {
   users: [User!]!
   user(id: Float!): User!
   allGames: [Game!]!
+  findById: Game!
   bets: [Bet!]!
   levels(id: Float!): LevelAccess!
 }

@@ -22,6 +22,7 @@ export class LevelAccessResolver {
   async createLevelAcces(
     @Args('data') data: CreateLevelAccessInput
   ): Promise<LevelAccess> {
+    
     const level_access = await this.levelAccessService.createLevelAcces(data)
     
     return level_access

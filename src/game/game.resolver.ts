@@ -16,6 +16,13 @@ export class GameResolver {
     return games
   }
 
+  @Query(() => Game)
+  async findById(id): Promise<Game>{
+    const game = await this.gameServive.findById(id)
+
+    return game
+  }
+
   @Mutation(() => Game)
   async createGame(
     @Args('data') data: CreateGameInput

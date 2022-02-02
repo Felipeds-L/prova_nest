@@ -17,6 +17,11 @@ export class GameService {
     return games
   }
 
+  async findById(id: number): Promise<Game>{
+    const game = await this.gameRepository.findOne(id)
+
+    return game
+  }
   async createGame(data: CreateGameInput): Promise<Game>{
     const game = await this.gameRepository.create(data)
     const game_saved = await this.gameRepository.save(game)
