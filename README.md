@@ -71,5 +71,38 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-# prova-nest
+
 # prova_nest
+
+Requisitos Não Funcionais
+     RNF01. Construir toda aplicação utilizando Nest JS e GraphQL - Em andamento
+
+     RNF02. Construir banco de dados com base no JSON (O mesmo da prova de Adonis JS) - Feito
+
+     RNF03. Validar entrada de dados - Em andamento
+
+Requisitos Funcionais
+     RF01. Login de usuários. - Feito
+    
+     RF02. CRUD de usuários
+      . create - feito
+      . read - feito
+      . update - não feito
+      . delete - não feito
+     RF03. CRUD de jogos
+      . create - feito
+      . read - feito
+      . update - não feito
+      . delete - não feito
+
+     RF04. CRUD de apostas
+      . create - feito
+      . read - feito
+      . update - não feito
+      . delete - não feito
+
+     RF05. Criar perfis de acesso (admin e player) e determinar rotas privadas.
+      . create - não feito
+      . read - não feito
+      . update - não feito
+      . delete - não feito
