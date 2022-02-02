@@ -75,6 +75,7 @@ Nest is [MIT licensed](LICENSE).
 # prova_nest
 
 Requisitos Não Funcionais
+     
      RNF01. Construir toda aplicação utilizando Nest JS e GraphQL - Em andamento
 
      RNF02. Construir banco de dados com base no JSON (O mesmo da prova de Adonis JS) - Feito
@@ -82,6 +83,7 @@ Requisitos Não Funcionais
      RNF03. Validar entrada de dados - Em andamento
 
 Requisitos Funcionais
+     
      RF01. Login de usuários. - Feito
     
      RF02. CRUD de usuários
