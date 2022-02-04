@@ -1,4 +1,7 @@
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
+import { IsAdmin } from 'src/auth/isAdmin';
+import { SAuthGuard } from 'src/auth/SAuth.guard';
 import { CreateGameInput } from './dto/create-game.input';
 import { Game } from './game.entity';
 import { GameService } from './game.service';
@@ -23,6 +26,7 @@ export class GameResolver {
     return game
   }
 
+  @UseGuards(SAuthGuard, IsAdmin)
   @Mutation(() => Game)
   async createGame(
     @Args('data') data: CreateGameInput

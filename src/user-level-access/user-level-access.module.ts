@@ -13,5 +13,6 @@ import { LevelAccessModule } from 'src/level-access/level-access.module';
     UserModule,
     LevelAccessModule
   ],
+  exports: [UserLevelAccessService]
 })
 export class UserLevelAccessModule {}

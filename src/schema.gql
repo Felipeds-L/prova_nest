@@ -41,6 +41,11 @@ type User {
   user_level: [UserLevelAccess!]!
 }
 
+type CreateValidatorUserInput {
+  user: User!
+  token: String!
+}
+
 type Cart {
   id: ID!
   min_cart_value: Float!
@@ -62,6 +67,7 @@ type Mutation {
   createGame(data: CreateGameInput!): Game!
   createBet(data: CreateBetInput!): Bet!
   createCart(data: CreateCartInput!): Cart!
+  madeLogin(data: CreateLoginInput!): CreateValidatorUserInput!
 }
 
 input CreateUserInput {
@@ -96,4 +102,9 @@ input CreateBetInput {
 
 input CreateCartInput {
   min_cart_value: Float!
+}
+
+input CreateLoginInput {
+  email: String!
+  password: String!
 }

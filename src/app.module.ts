@@ -6,15 +6,13 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path/posix';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { LoginModule } from './login/login.module';
 import { GameModule } from './game/game.module';
 import { BetModule } from './bet/bet.module';
-import { LevelAccessService } from './level-access/level-access.service';
-import { LevelAccessResolver } from './level-access/level-access.resolver';
 import { LevelAccessModule } from './level-access/level-access.module';
 import { UserLevelAccessModule } from './user-level-access/user-level-access.module';
-import { CartService } from './cart/cart.service';
-import { CartResolver } from './cart/cart.resolver';
 import { CartModule } from './cart/cart.module';
+import { AuthService } from './auth/auth.service';
 
 
 @Module({
@@ -30,6 +28,7 @@ import { CartModule } from './cart/cart.module';
     LevelAccessModule,
     UserLevelAccessModule,
     CartModule,
+    LoginModule,
   ],
   controllers: [AppController],
   providers: [AppService],
