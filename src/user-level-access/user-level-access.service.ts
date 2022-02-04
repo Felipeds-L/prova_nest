@@ -15,16 +15,22 @@ export class UserLevelAccessService {
     private levelService: LevelAccessService
   ){}
 
-  async findUserLevel(user: number){
+  async isAdmin(user: number){
     const user_level = await this.userLevelAccessRepository.find({where: { user: user }})
     let isAdmin = false
     user_level.forEach((user) => {
+      console.log(user_level)
       if(user.level_access === 1){
         isAdmin = true
       }
     })
 
     return isAdmin
+  }
+
+  async findAll(){
+    const user_level = await this.userLevelAccessRepository.find()
+    return user_level
   }
 
   async createUserLevel(data: CreateUserLevelAccessInput): Promise<UserLevelAccess>{

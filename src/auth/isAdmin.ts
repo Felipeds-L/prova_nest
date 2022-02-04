@@ -11,11 +11,12 @@ export class IsAdmin implements CanActivate{
 
   async canActivate (context: ExecutionContext){
     const contexts = GqlExecutionContext.create(context)
-    console.log(contexts.getContext().r)
+    console.log(contexts.getContext().req.user)
     const user:User = contexts.getContext().req.user;
     
-    const is_admin = await this.userLevelService.findUserLevel(user.id)
-
+    const is_admin = await this.userLevelService.isAdmin(user.id)
+    const user_level = await this.userLevelService.findAll()
+    console.log(user_level)
     if(!is_admin){
       throw new ForbiddenException('Only administrators can made this operation!')
     }

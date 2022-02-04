@@ -5,17 +5,17 @@ import { UserLevelAccessModule } from 'src/user-level-access/user-level-access.m
 import { UserModule } from 'src/user/user.module';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './Jwt.strategy';
+import { jwtConstants } from './constants';
+
 
 @Module({
   imports:[
     UserModule,
     PassportModule,
     UserLevelAccessModule,
-    JwtModule.registerAsync({
-      useFactory: () => ({
-        secret: 'mySecretWord',
-        signOptions: {expiresIn: '1d'}
-      })
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: {expiresIn: '5m'}
     })
   ],
   providers: [AuthService, JwtStrategy],
