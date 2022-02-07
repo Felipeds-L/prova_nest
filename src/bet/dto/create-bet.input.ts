@@ -1,5 +1,8 @@
-import { InputType } from "@nestjs/graphql";
+import { InputType, Field } from "@nestjs/graphql";
+import { IsArray } from "class-validator";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Game } from "src/game/game.entity";
+import { User } from "src/user/user.entity";
 
 @InputType()
 export class CreateBetInput{
@@ -14,4 +17,11 @@ export class CreateBetInput{
   @IsString()
   @IsNotEmpty({message: 'numbers_choosed need be specified'})
   numbers_choosed: string
+}
+
+@InputType()
+export class BetsInputTDO{
+  @Field(() => [CreateBetInput])
+  @IsArray()
+  bets: CreateBetInput[]
 }

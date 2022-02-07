@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CartModule } from 'src/cart/cart.module';
 import { GameModule } from 'src/game/game.module';
 import { GameService } from 'src/game/game.service';
 import { UserModule } from 'src/user/user.module';
@@ -12,7 +13,8 @@ import { BetService } from './bet.service';
   imports: [
     TypeOrmModule.forFeature([Bet]),
     GameModule,
-    UserModule
+    UserModule,
+    CartModule
   ],
   exports: [BetService]
 })

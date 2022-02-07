@@ -22,6 +22,10 @@ export class CartService {
   }
 
   async createCart(data: CreateCartInput): Promise<Cart>{
+    const isCartAlreadyExist = await this.cartRepository.find()
+    if(isCartAlreadyExist.length > 0){
+      throw new InternalServerErrorException("Cart already exist! Delete it and create a new")
+    }
     const cart = await this.cartRepository.create(data)
     const cart_saved = await this.cartRepository.save(data)
 
@@ -30,5 +34,13 @@ export class CartService {
     }
 
     return cart_saved
+  }
+
+  async deleteCart(id: number){
+    const cart = await this.cartRepository.findOne({where: {id: id}})
+    if(!cart){
+      throw new InternalServerErrorException("Cart do not found!")
+    }
+    await this.cartRepository.delete(id)
   }
 }

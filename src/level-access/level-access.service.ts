@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LevelAccess } from './level-access.entity';
@@ -10,6 +10,16 @@ export class LevelAccessService {
     @InjectRepository(LevelAccess)
     private levelAccessRepository: Repository<LevelAccess>
   ){}
+
+  async findAll(): Promise<LevelAccess[]>{
+    const levels = await this.levelAccessRepository.find()
+
+    if(!levels){
+      throw new BadRequestException('any level access found!')
+    }
+
+    return levels
+  }
 
   async levelById(id: number): Promise<LevelAccess>{
     const level = await this.levelAccessRepository.findOne(id)
@@ -30,5 +40,26 @@ export class LevelAccessService {
     }
 
     return level_access_saved
+  }
+
+  async updateLevel(data: CreateLevelAccessInput, level_id: number): Promise<LevelAccess>{
+    const level = await this.levelAccessRepository.findOne(level_id)
+    if(!level){
+      throw new BadRequestException('Level Access do not found!')
+    }
+    await this.levelAccessRepository.update(level_id,  {...data})
+
+    const level_updated = await this.levelAccessRepository.findOne(level_id)
+
+    return level_updated
+  }
+
+  async deleteLevel(level_id: number){
+    const level = await this.levelAccessRepository.findOne(level_id)
+    if(!level){
+      throw new BadRequestException('Level Access do not found!')
+    }
+
+    return await this.levelAccessRepository.delete(level_id)
   }
 }

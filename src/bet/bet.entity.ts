@@ -11,10 +11,16 @@ export class Bet{
   @Field(() => ID)
   id: number
 
-  @ManyToOne(() => Game, game => game.id)
+  @ManyToOne(() => Game, game => game.id, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
+  })
   game: number
   
-  @ManyToOne(() => User, user => user.id)
+  @ManyToOne(() => User, user => user.id,{
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
+  })
   user: number
 
   @Column()

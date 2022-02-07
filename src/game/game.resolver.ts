@@ -11,7 +11,8 @@ export class GameResolver {
   constructor(
     private gameServive: GameService
   ){}
-
+  
+  @UseGuards(SAuthGuard)
   @Query(() => [Game])
   async allGames(): Promise<Game[]> {
     const games = await this.gameServive.findAll()
@@ -19,8 +20,11 @@ export class GameResolver {
     return games
   }
 
+  @UseGuards(SAuthGuard)
   @Query(() => Game)
-  async findById(id): Promise<Game>{
+  async findById(
+    @Args('id') id: number
+  ): Promise<Game>{
     const game = await this.gameServive.findById(id)
 
     return game
@@ -34,5 +38,24 @@ export class GameResolver {
     const game = await this.gameServive.createGame(data);
 
     return game;
+  }
+
+  @UseGuards(SAuthGuard, IsAdmin)
+  @Mutation(() => Game)
+  async updateGame(
+    @Args('id') id: number,
+    @Args('data') data: CreateGameInput
+  ){
+    return await this.gameServive.updateGame(id, data)
+  }
+
+  @UseGuards(SAuthGuard, IsAdmin)
+  @Mutation(() => Boolean)
+  async deleteGame(
+    @Args('game_id') game_id: number
+  ) {
+    await this.gameServive.deleteGame(game_id);
+
+    return true;
   }
 }

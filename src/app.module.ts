@@ -10,9 +10,7 @@ import { LoginModule } from './login/login.module';
 import { GameModule } from './game/game.module';
 import { BetModule } from './bet/bet.module';
 import { LevelAccessModule } from './level-access/level-access.module';
-import { UserLevelAccessModule } from './user-level-access/user-level-access.module';
 import { CartModule } from './cart/cart.module';
-import { AuthService } from './auth/auth.service';
 
 
 @Module({
@@ -26,7 +24,6 @@ import { AuthService } from './auth/auth.service';
     GameModule,
     BetModule,
     LevelAccessModule,
-    UserLevelAccessModule,
     CartModule,
     LoginModule,
   ],

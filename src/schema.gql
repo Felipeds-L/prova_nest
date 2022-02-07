@@ -2,6 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type LevelAccess {
+  id: ID!
+  level: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Game {
   id: ID!
   type: String!
@@ -20,25 +32,15 @@ type Bet {
   numbers_choosed: String!
 }
 
-type LevelAccess {
-  id: ID!
-  level: String!
-  user_level: [UserLevelAccess!]!
-}
-
-type UserLevelAccess {
-  id: ID!
-  user: Float!
-  level_access: Float!
-}
-
 type User {
   id: ID!
+  access: [LevelAccess!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   username: String!
   email: String!
   password: String!
   bet: [Bet!]!
-  user_level: [UserLevelAccess!]!
 }
 
 type CreateValidatorUserInput {
@@ -54,19 +56,29 @@ type Cart {
 type Query {
   users: [User!]!
   user(id: Float!): User!
+  findLevels: [LevelAccess!]!
   levels(id: Float!): LevelAccess!
   allGames: [Game!]!
-  findById: Game!
+  findById(id: Float!): Game!
   bets: [Bet!]!
+  betsUser(user: Float!): [Bet!]!
+  showCart: [Cart!]!
 }
 
 type Mutation {
-  createUser(data: CreateUserInput!): User!
-  createUserLevel(data: CreateUserLevelAccessInput!): UserLevelAccess!
+  createUser(level: Float!, data: CreateUserInput!): User!
+  updateUser(data: CreateUserInput!, id: Float!): User!
+  deleteUser(user_id: Float!): Boolean!
   createLevelAcces(data: CreateLevelAccessInput!): LevelAccess!
+  updateLevel(data: CreateLevelAccessInput!, level_id: Float!): LevelAccess!
+  deleteLevel(level_id: Float!): Boolean!
   createGame(data: CreateGameInput!): Game!
-  createBet(data: CreateBetInput!): Bet!
+  updateGame(data: CreateGameInput!, id: Float!): Game!
+  deleteGame(game_id: Float!): Boolean!
+  createBet(data: BetsInputTDO!): [Bet!]!
+  deleteBet(id: Float!): Boolean!
   createCart(data: CreateCartInput!): Cart!
+  deleteCart(id: Float!): String!
   madeLogin(data: CreateLoginInput!): CreateValidatorUserInput!
 }
 
@@ -74,11 +86,6 @@ input CreateUserInput {
   username: String!
   email: String!
   password: String!
-}
-
-input CreateUserLevelAccessInput {
-  user: Float!
-  level_access: Float!
 }
 
 input CreateLevelAccessInput {
@@ -92,6 +99,10 @@ input CreateGameInput {
   price: Float!
   max_number: Float!
   color: String!
+}
+
+input BetsInputTDO {
+  bets: [CreateBetInput!]!
 }
 
 input CreateBetInput {

@@ -1,6 +1,5 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
-import { UserLevelAccess } from "src/user-level-access/user-level-access.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
@@ -10,9 +9,15 @@ export class LevelAccess{
   @Field(() => ID)
   id: number
 
+  @Field()
   @Column()
   level: string
 
-  @OneToMany(() => UserLevelAccess, userLevel => userLevel.id)
-  public user_level: UserLevelAccess[]
+  @Field()
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @Field()
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
