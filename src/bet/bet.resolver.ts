@@ -6,7 +6,7 @@ import { userLogged } from 'src/auth/user-logged';
 import { User } from 'src/user/user.entity';
 import { Bet } from './bet.entity';
 import { BetService } from './bet.service';
-import { BetsInputTDO, CreateBetInput } from './dto/create-bet.input';
+import { BetsInputTDO } from './dto/create-bet.input';
 
 @UseGuards(SAuthGuard, IsClient)
 @Resolver('Bet')
@@ -14,7 +14,7 @@ export class BetResolver {
   constructor(
     private betService: BetService,
   ){}
-
+  
   @Query(() => [Bet])
   async bets(): Promise<Bet[]>{
     const bets = await this.betService.showAllBets()

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';import { error } from 'consol
 import { response } from 'express';
 import { throwError } from 'rxjs';
 import { LevelAccessService } from 'src/level-access/level-access.service';
+import { MailService } from 'src/mail/mail.service';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './user.entity';
@@ -12,7 +13,8 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-    private levelService: LevelAccessService
+    private levelService: LevelAccessService,
+    private mailService: MailService
   ){}
 
   async findAllUsers(): Promise<User[]>{
@@ -49,7 +51,7 @@ export class UserService {
     const level_access = await this.levelService.levelById(level)
 
     userSaved.access = [level_access]
-    
+    this.mailService.newUser(data.username, data.email)
     if(!userSaved){
       throw new InternalServerErrorException("Error on create the user!")
     }

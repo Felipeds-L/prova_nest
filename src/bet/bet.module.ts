@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CartModule } from 'src/cart/cart.module';
 import { GameModule } from 'src/game/game.module';
 import { GameService } from 'src/game/game.service';
+import { MailModule } from 'src/mail/mail.module';
 import { UserModule } from 'src/user/user.module';
 import { Bet } from './bet.entity';
 import { BetResolver } from './bet.resolver';
@@ -14,7 +15,8 @@ import { BetService } from './bet.service';
     TypeOrmModule.forFeature([Bet]),
     GameModule,
     UserModule,
-    CartModule
+    CartModule,
+    MailModule
   ],
   exports: [BetService]
 })

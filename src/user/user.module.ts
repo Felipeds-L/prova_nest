@@ -4,11 +4,13 @@ import { UserResolver } from './user.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { LevelAccessModule } from 'src/level-access/level-access.module';
+import { MailModule } from 'src/mail/mail.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
-    LevelAccessModule
+    LevelAccessModule,
+    MailModule
   ],
   providers: [UserService, UserResolver],
   exports: [UserService]

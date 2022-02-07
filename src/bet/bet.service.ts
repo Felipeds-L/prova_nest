@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CartService } from 'src/cart/cart.service';
 import { GameService } from 'src/game/game.service';
+import { MailService } from 'src/mail/mail.service';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
@@ -14,8 +15,8 @@ export class BetService {
     @InjectRepository(Bet)
     private betRepository: Repository<Bet>,
     private gameService: GameService,
-    private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
+    private mailService: MailService
   ){}
 
   async showAllBets(): Promise<Bet[]>{
@@ -115,8 +116,8 @@ export class BetService {
         }
 
       }
-      
-      return data
+      await this.mailService.newBet(user.username, user.email)
+      return bets 
       
   }
 

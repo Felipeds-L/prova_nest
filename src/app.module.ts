@@ -11,6 +11,7 @@ import { GameModule } from './game/game.module';
 import { BetModule } from './bet/bet.module';
 import { LevelAccessModule } from './level-access/level-access.module';
 import { CartModule } from './cart/cart.module';
+import { MailModule } from './mail/mail.module';
 
 
 @Module({
@@ -26,6 +27,7 @@ import { CartModule } from './cart/cart.module';
     LevelAccessModule,
     CartModule,
     LoginModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
